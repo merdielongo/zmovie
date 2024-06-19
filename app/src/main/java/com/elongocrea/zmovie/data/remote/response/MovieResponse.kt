@@ -1,4 +1,7 @@
 package com.elongocrea.zmovie.data.remote.response
 
-class MovieResponse {
-}
+import com.elongocrea.zmovie.data.local.model.Movie
+
+data class MovieResponse (
+    val results: List<Movie>
+)
