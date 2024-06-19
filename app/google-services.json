@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39226275108",
+    "project_id": "zmovie-8423d",
+    "storage_bucket": "zmovie-8423d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39226275108:android:e031274d2776c7a0d52fb1",
+        "android_client_info": {
+          "package_name": "com.elongocrea.zmovie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa883rA9gpPgkkbKB9WkpO_qf-6HL8_9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
