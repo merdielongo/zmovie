@@ -10,13 +10,13 @@ class FirebaseAuthManager {
         return auth.currentUser
     }
 
-    fun singIn(email: String, password: String, onResult: (Boolean) -> Unit) {
+    fun signIn(email: String, password: String, onResult: (Boolean) -> Unit) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             onResult(task.isSuccessful)
         }
     }
 
-    fun singUp(email: String, password: String, onResult: (Boolean) -> Unit) {
+    fun signUp(email: String, password: String, onResult: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             onResult(task.isSuccessful)
         }
