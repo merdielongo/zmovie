@@ -7,12 +7,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.elongocrea.zmovie.MyApplication
+import com.elongocrea.zmovie.ui.screen.movie.MovieListScreen
 import com.elongocrea.zmovie.ui.theme.ZMovieTheme
 import com.elongocrea.zmovie.viewmodel.MovieViewModel
 import com.elongocrea.zmovie.viewmodel.MovieViewModelFactory
@@ -30,11 +33,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ZMovieTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                MyApp {
+                    MovieListScreen(viewModel = movieViewModel, disposables = disposables)
                 }
             }
         }
@@ -42,17 +42,21 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun MyApp(content: @Composable () -> Unit) {
+    ZMovieTheme {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            content()
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     ZMovieTheme {
-        Greeting("Android")
+        // Greeting("Android")
     }
 }

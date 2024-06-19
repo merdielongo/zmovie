@@ -106,4 +106,13 @@ dependencies {
 
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
+
+    implementation(libs.rxjava3.rxjava)
+    implementation(libs.rxjava3.rxandroid)
+
+    implementation(libs.adapter.rxjava3)
+
+    implementation(libs.androidx.lifecycle.reactivestreams.ktx)
+    implementation(libs.androidx.lifecycle.extensions)
+    annotationProcessor(libs.androidx.lifecycle.compiler)
 }
