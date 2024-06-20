@@ -1,8 +1,10 @@
 plugins {
+    id("kotlin-kapt")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.service)
     alias(libs.plugins.github.ben.names)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -32,11 +34,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -44,6 +46,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -52,7 +55,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -83,7 +85,7 @@ dependencies {
     implementation(libs.rxjava)
 
     implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.rxjava2)
     implementation(libs.androidx.room.rxjava3)
     implementation(libs.androidx.room.guava)
@@ -114,5 +116,23 @@ dependencies {
 
     implementation(libs.androidx.lifecycle.reactivestreams.ktx)
     implementation(libs.androidx.lifecycle.extensions)
-    annotationProcessor(libs.androidx.lifecycle.compiler)
+    kapt(libs.androidx.lifecycle.compiler)
+    //kapt(libs.hilt.android.compiler)
+    //implementation(libs.androidx.hilt.navigation.compose)
+
+    // Room dependencies
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+
+    implementation(libs.koin.android)
+    implementation(libs.koin.android.compat)
+    implementation(libs.koin.androidx.workmanager)
+    implementation(libs.koin.androidx.navigation)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.insert.koin.koin.core)
+    implementation(libs.koin.android)
 }
