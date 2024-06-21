@@ -140,5 +140,7 @@ dependencies {
     implementation(libs.compose)
     implementation(libs.coil.compose)
     implementation(libs.accompanist.placeholder.material)
+    implementation(libs.animated.navigation.bar)
+    implementation(libs.material3)
 
 }
