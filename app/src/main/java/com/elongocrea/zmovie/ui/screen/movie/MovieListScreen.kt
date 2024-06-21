@@ -1,6 +1,8 @@
 package com.elongocrea.zmovie.ui.screen.movie
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -11,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.elongocrea.zmovie.ui.components.item.MovieItem
 import com.elongocrea.zmovie.utils.toLiveData
@@ -31,7 +34,6 @@ fun MovieListScreen(
     movieViewModel.fetchMoviesFromApi()
     val movies = movieViewModel.movies.observeAsState(initial = emptyList())
 
-    Text("MM")
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier.fillMaxSize()

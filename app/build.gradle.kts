@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.messaging.ktx)
     implementation(libs.firebase.storage.ktx)
+    implementation(libs.androidx.compose.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -138,4 +139,6 @@ dependencies {
     implementation(libs.moshi.kotlin)
     implementation(libs.compose)
     implementation(libs.coil.compose)
+    implementation(libs.accompanist.placeholder.material)
+
 }

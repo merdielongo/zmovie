@@ -22,12 +22,13 @@ import coil.compose.rememberImagePainter
 @Composable
 fun RoundedImage(
     image: Painter,
-    description: String? = null
+    description: String? = null,
+    modifier: Modifier
 ) {
     Card(
         elevation = CardDefaults.cardElevation(),
         shape = RoundedCornerShape(8.dp),
-        modifier = Modifier.width(180.dp)
+        modifier = modifier
     ) {
         Box(modifier = Modifier.clip(shape = RoundedCornerShape(8.dp))) {
             Image(
