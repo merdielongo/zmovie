@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 @Composable
 fun NavGraph(
     navController: NavHostController,
-    startDestination: String = "login",
+    startDestination: String = "movies",
 ) {
 
     NavHost(

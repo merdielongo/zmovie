@@ -1,16 +1,22 @@
 package com.elongocrea.zmovie.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.elongocrea.zmovie.data.local.model.Movie
 import com.elongocrea.zmovie.data.repository.MovieRepository
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
     private val disposables = CompositeDisposable()
 
-    val all: Flowable<List<Movie>> = repository.all
+    private val _movies = MutableLiveData<List<Movie>>()
+    val movies: LiveData<List<Movie>> get() = _movies
+
 
     fun create(movie: Movie) {
         repository.create(movie)
@@ -24,8 +30,17 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
         repository.deleteAll()
     }
 
-    fun fetchMoviesFromApi(): Single<List<Movie>> {
-        return repository.fetchListFromApi()
+    fun fetchMoviesFromApi() {
+        val disposable = repository.getList()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ movies ->
+                _movies.postValue(movies)
+            }, { error ->
+                // Handle error
+                error.printStackTrace()
+            })
+        this.disposables.add(disposable)
     }
 
     override fun onCleared() {

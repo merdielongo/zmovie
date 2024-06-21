@@ -135,4 +135,6 @@ dependencies {
     implementation(libs.koin.androidx.compose)
     implementation(libs.insert.koin.koin.core)
     implementation(libs.koin.android)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.compose)
 }

@@ -2,8 +2,10 @@ package com.elongocrea.zmovie.ui.screen.movie
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
 import androidx.navigation.NavHostController
 import com.elongocrea.zmovie.ui.components.item.MovieItem
 import com.elongocrea.zmovie.utils.toLiveData
@@ -21,16 +23,13 @@ fun MovieListScreen(
     disposables: CompositeDisposable
 ) {
 
-    val moviesState = movieViewModel.all
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribeOn(Schedulers.io())
-        .toLiveData(disposables)
-        .observeAsState(initial = emptyList())
+    movieViewModel.fetchMoviesFromApi()
+    val movies = movieViewModel.movies.observeAsState(initial = emptyList())
+    println("List -> ${movies.value}")
 
-    val movies = moviesState.value
-
+    Text("MM")
     LazyColumn {
-        items(movies) { movie ->
+        items(movies.value) { movie ->
             MovieItem(movie = movie) {
                 val movieJson = Gson().toJson(movie)
                 println(movieJson)
