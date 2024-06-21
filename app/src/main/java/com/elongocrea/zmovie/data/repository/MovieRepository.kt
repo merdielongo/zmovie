@@ -21,14 +21,14 @@ class MovieRepository(
     private val compositeDisposable = CompositeDisposable()
 
 
-    fun getList(): Flowable<List<Movie>> {
+    fun getList(): Single<List<Movie>> {
         checkAndFetchRemoteMovies()
         return movieDao.getAll()
     }
 
     fun getListMerge(): Flowable<List<Movie>> {
         return movieDao.getAll()
-            .mergeWith(getListRemoteMovies().toFlowable())
+            .mergeWith(getListRemoteMovies())
     }
 
     private fun getListRemoteMovies(): Single<List<Movie>> {

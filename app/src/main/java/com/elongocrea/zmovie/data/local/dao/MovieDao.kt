@@ -9,6 +9,7 @@ import androidx.room.Update
 import com.elongocrea.zmovie.data.local.model.Movie
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 
 @Dao
 interface MovieDao {
@@ -20,7 +21,7 @@ interface MovieDao {
     fun insertAll(movies: List<Movie>): Completable
 
     @Query("SELECT * FROM movies")
-    fun getAll(): Flowable<List<Movie>>
+    fun getAll(): Single<List<Movie>>
 
     @Delete
     fun delete(movie: Movie)
