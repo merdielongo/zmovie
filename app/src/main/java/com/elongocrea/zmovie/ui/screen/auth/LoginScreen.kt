@@ -101,8 +101,9 @@ fun LoginScreen(
         CustomButton(
             modifier = Modifier.fillMaxWidth().height(45.dp),
             label = "Login",
-            // enabled = email.isNotEmpty() && password.isNotEmpty(),
+            enabled = email.isNotEmpty() && password.isNotEmpty(),
             onClick = {
+
                 authViewModel.signIn(email, password) { success ->
                     if (success) {
                         navController.navigate("movies")
